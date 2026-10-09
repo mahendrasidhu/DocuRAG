@@ -1,0 +1,5 @@
+Python is a high-level programming language known for its readability.
+Python uses indentation to define blocks of code.
+Lists are ordered and mutable collections.
+Dictionaries store data as key-value pairs.
+Functions in Python are defined using the def keyword.

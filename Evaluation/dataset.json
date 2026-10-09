@@ -1,0 +1,73 @@
+[
+    {
+        "query":"What is inheritance in Java?",
+        "relevant_chunks":[
+            "java.txt_0",
+            "java.txt_1"
+        ],
+        "relevant_documents":[
+            "java.txt"
+        ]
+    },
+    {
+        "query":"What is java?",
+        "relevant_chunks":[
+            "java.txt_0",
+            "java.txt_1"
+        ],
+        "relevant_documents":[
+            "java.txt"
+        ]
+    },
+    {
+        "query":"What is Python?",
+        "relevant_chunks":[
+            "python.txt_0",
+            "python.txt_1"
+        ],
+        "relevant_documents":[
+            "python.txt"
+        ]
+    },
+    {
+        "query":"How are functions defined in Python?",
+        "relevant_chunks":[
+            "python.txt_0",
+            "python.txt_1"
+        ],
+        "relevant_documents":[
+            "python.txt"
+        ]
+    },
+    {
+        "query":"What will I be working on in Kotak Tech?",
+        "relevant_chunks":[
+            "AssociateIIISoftwareEngineering.pdf_0",
+            "AssociateIIISoftwareEngineering.pdf_1"
+        ],
+        "relevant_documents":[
+            "AssociateIIISoftwareEngineering.pdf"
+        ]
+    },
+    {
+        "query": "Who invented the telephone?",
+        "relevant_chunks": [],
+        "relevant_documents": []
+    },
+    {
+        "query": "What is the capital of France?",
+        "relevant_chunks": [],
+        "relevant_documents": []
+    },
+    {
+        "query":"The team in Scalar AI includes of which memebers?",
+        "relevant_chunks":[
+            "SoftwareEngineeringInternEnvironmentEngineeringScalerAILabs.docx_0",
+            "SoftwareEngineeringInternEnvironmentEngineeringScalerAILabs.docx_1"
+        ],
+        "relevant_documents":[
+            "SoftwareEngineeringInternEnvironmentEngineeringScalerAILabs.docx"
+        ]
+    }
+
+]
