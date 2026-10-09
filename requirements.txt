@@ -1,5 +1,9 @@
+
 google-genai
 python-dotenv
 pydantic
 qdrant-client
 sentence-transformers
+pymupdf
+python-docx
+langchain-text-splitters
