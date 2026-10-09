@@ -272,6 +272,3 @@ This project explores the practical engineering challenges involved in building 
 - Retrieval and groundedness evaluation.
 - Environment configuration and persistent local vector storage.
 
-## License
-
-A license has not yet been specified. If you intend to make this project open source, consider adding an appropriate license file before inviting others to reuse or modify the code.
