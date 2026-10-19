@@ -1,8 +1,14 @@
 {
     "java.txt": {
-        "hash": "ec70055d02c550047f0d83f18528b113470152b301b5f7e1f6fc38aea862bee3"
+        "hash": "a24a362bf56e0ae1f707d28a675849504601a7d92befedd1dce1845f41fdde5e"
     },
     "python.txt": {
         "hash": "b8f42bcd42d1f7c21591689cbb24fa0acf4eba2fb6491ecd3c46e25ba69b85b3"
+    },
+    "cpp.txt": {
+        "hash": "03323c61098b6860db441a6211e0e9469cf19abe0fa8c9463f4c80d4385e191b"
+    },
+    "AI Engineer Associate_2026.pdf": {
+        "hash": "e5753c1c830085f0d0e46199ae89aaeeca83eb64ac7abf75c2cf55d227780ec2"
     }
 }

@@ -1,3 +1,4 @@
 Java is an object-oriented programming language.
 Java uses classes and objects to structure programs.
 Inheritance allows one class to acquire properties and methods of another class.
+Java eliminates complex features like explicit pointers to prevent unauthorized memory access. It also includes built-in security features, such as the bytecode verifier, to detect and block malicious code before execution.

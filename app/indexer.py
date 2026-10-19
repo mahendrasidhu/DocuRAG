@@ -2,7 +2,7 @@ from app.index_metadata import load_metadata, save_metadata, calculate_hash
 from app.ingestion import discover_documents,load_document
 from app.chunking import chunk_document
 from app.embeddings import embed_documents
-from app.vector_store import index_documents,delete_document
+from app.vector_store import index_documents,delete_document, get_indexed_filenames, close_vector_store
 
 def get_document_changes():
     existing_metadata=load_metadata()
@@ -10,7 +10,10 @@ def get_document_changes():
     files=discover_documents()
     
     for file in files:
-        content=load_document(file)
+        data=load_document(file)
+        content="\n".join(
+            page["content"] for page in data
+        )
         file_hash=calculate_hash(content)
         filename=file.name
         file_metadata={
@@ -24,6 +27,7 @@ def get_document_changes():
     
     added_files=new_files-existing_files
     removed_files=existing_files-new_files
+    stale_files= get_indexed_filenames()-new_files
     changed_files={
         filename for filename in existing_files & new_files
         if existing_metadata[filename]["hash"] != new_metadata[filename]["hash"]
@@ -39,6 +43,7 @@ def get_document_changes():
         "removed": removed_files,
         "changed": changed_files,
         "unchanged": unchanged_files,
+        "stale":stale_files,
         "new_metadata":new_metadata
     }
     
@@ -52,10 +57,11 @@ def index_new_document(file):
     
     for index,chunk in enumerate(chunks):
         knowledge_base.append({
-            "point_id":f"{filename}_{index}",
-            "chunk_id":index,
+            "point_id":f"{filename}_{chunk['chunk_id']}",
+            "chunk_id":chunk["chunk_id"],
             "filename":filename,
-            "content":chunk,
+            "page_number":chunk["page_number"],
+            "content":chunk["content"],
             "embedding":embeddings[index]
         })
     
@@ -73,10 +79,11 @@ def update_document(file):
     
     for index,chunk in enumerate(chunks):
             knowledge_base.append({
-                "point_id":f"{filename}_{index}",
-                "chunk_id":index,
+                "point_id":f"{filename}_{chunk['chunk_id']}",
+                "chunk_id":chunk['chunk_id'],
                 "filename":filename,
-                "content":chunk,
+                "page_number":chunk['page_number'],
+                "content":chunk["content"],
                 "embedding":embeddings[index]
             })
     index_documents(knowledge_base)
@@ -111,5 +118,16 @@ def update_index():
     
     for filename in changes["unchanged"]:
         print(f"Document unchanged: {filename}")
+        
+    for filename in changes['stale']:
+        if filename not in changes["removed"]:
+            delete_document(filename)
+            print(f"Stale Document {filename} removed")
     
     save_metadata(metadata)
+    
+if __name__ == "__main__":
+    try:
+        update_index()
+    finally:
+        close_vector_store()

@@ -1,0 +1,4 @@
+• : C++ supports core OOP concepts including classes, objects, encapsulation, abstraction, inheritance, and polymorphism.
+• Fast Performance & Compilation: Being a compiled language with low-level memory control, it executes code very quickly, making it ideal for games, operating systems, and high-frequency trading.
+• Memory Management & Pointers: It gives developers direct access to memory addresses using pointers, alongside manual or smart pointer allocation (new/delete).
+• Standard Template Library (STL): It includes a rich library of pre-made containers (like vector and list) and algorithms to handle data structures easily.

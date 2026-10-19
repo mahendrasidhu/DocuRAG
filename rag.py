@@ -1,5 +1,5 @@
 from app.pipeline import ask
 
-query = "Who invented Telephone?"
+query = "What is the capital of France?"
 
 print(ask(query))

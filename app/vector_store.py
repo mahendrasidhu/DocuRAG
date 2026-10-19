@@ -62,3 +62,64 @@ def delete_document(filename):
             )
         ),
     )
+    
+    
+
+def get_indexed_filenames():
+    filenames = set()
+    offset = None
+
+    while True:
+        points, offset = qdrant.scroll(
+            collection_name=QDRANT_COLLECTION,
+            limit=100,
+            offset=offset,
+            with_payload=["filename"],
+            with_vectors=False
+        )
+
+        for point in points:
+            filename = point.payload.get("filename")
+            if filename:
+                filenames.add(filename)
+
+        if offset is None:
+            break
+
+    return filenames
+
+def get_document_chunks(filename):
+    
+    chunks=[]
+    offset = None
+    
+    while True:
+        points,offset=qdrant.scroll(
+            collection_name=QDRANT_COLLECTION,
+            scroll_filter=Filter(
+                must=[
+                    FieldCondition(
+                        key="filename",
+                        match=MatchValue(value=filename)
+                    )
+                ]
+            ),
+            limit=100,
+            offset=offset,
+            with_payload=True,
+            with_vectors=False            
+        )
+        
+        for point in points:
+            chunks.append(point.payload)
+            
+        if offset is None:
+            break
+    
+    chunks.sort(key=lambda chunk: chunk["chunk_id"])
+    
+    return chunks
+
+
+def close_vector_store():
+    qdrant.close()
